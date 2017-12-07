@@ -30,14 +30,14 @@ for row = 1:512;
 end
 lena_np = ifft2(lena_np_ft);
 lena_unity = lena_mag.*real(ifft(lena_unity_ft));
-figure
+figure;
 subplot(1,2,1); imagesc(lena_np); title('No Phase');
 subplot(1,2,2); imagesc(lena_unity); title('Zero Magnitude')
 
 noisy = imread('boy_noisy.gif', 'Frames', 'all');
-imshow(noisy)
+figure; imagesc(noisy); title('Boy with Noise'); colormap('gray')
 noisy_fft = fftshift(fft2(noisy));
-%mesh(log(1+abs(noisy_fft)))
+figure; mesh(log(1+abs(noisy_fft))); title('2D frequency Spectrum of Boy')
 
 filter = ones(512);
 filter = surroundings2zero(filter,273,225);
@@ -47,4 +47,5 @@ filter = surroundings2zero(filter,241,289);
 
 noisy_clean_ft = filter .* noisy_fft;
 clean = ifft2(ifftshift(noisy_clean_ft));
-imagesc(clean)
+figure; imagesc(clean)
+title('Boy After Noise Removal'); colormap('gray')

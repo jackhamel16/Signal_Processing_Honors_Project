@@ -8,7 +8,7 @@ function digit_ft_matrix = separate2ft_digits(signal_unpadded,N)
   zero_count = 0;
   digit_count = 1;
   for i = 1:size(signal,2)
-      if signal(i) ~= 0
+      if signal(i) ~= 0 
           if (i > 1 && signal(i-1) == 0 && zero_count > 99) ||...
                   i == size(signal,2)
               %checks if at start of new digit or end of signal
